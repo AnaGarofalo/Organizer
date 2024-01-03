@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, Text, TouchableHighlight } from "react-native";
-import styles from "../../assets/styles";
+import styles from "./styles";
 
 export default function Timer({ baseTime, color }) {
   const [isWorking, setIsWorking] = useState(false);

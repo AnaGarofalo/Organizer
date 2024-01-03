@@ -1,6 +1,6 @@
 import { View, Text, TouchableHighlight } from "react-native";
-import { time0ptions } from "../../assets/vars";
-import styles from "../../assets/styles";
+import time0ptions from "../../../assets/vars";
+import styles from "./styles";
 
 export default function NavBar({ timeOption, setTimeOption }) {
   return (

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import colors from "./theme";
+import colors from "../../../assets/theme";
 
 const baseContainer = {
   paddingTop: 30,
@@ -20,17 +20,14 @@ export default styles = StyleSheet.create({
     ...baseContainer,
     backgroundColor: colors.primarySoft,
   },
-
   secondaryContainer: {
     ...baseContainer,
     backgroundColor: colors.secondarySoft,
   },
-
   terciaryContainer: {
     ...baseContainer,
     backgroundColor: colors.terciarySoft,
   },
-
   primaryOptionTitle: {
     ...baseOptionTitle,
     color: colors.primaryStrong,
