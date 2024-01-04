@@ -1,9 +1,12 @@
 import { View, Text } from "react-native";
-import styles from "./styles/Home";
-import Timer from "../components/Timer/Timer";
 import { useEffect, useState } from "react";
+
+import Timer from "../components/Timer/Timer";
 import NavBar from "../components/NavBar/NavBar";
-import timeOptions from "../../assets/vars";
+
+import styles from "./styles/Home";
+import timeOptions from "../assets/vars";
+import UserBar from "../components/UserBar/UserBar";
 
 export default function Home() {
   const [timeOption, setTimeOption] = useState(0);
@@ -15,9 +18,7 @@ export default function Home() {
 
   return (
     <View style={styles[optionProps.color + "Container"]}>
-      <View>
-        <Text>Otravar</Text>
-      </View>
+      <UserBar />
       <View>
         <Text style={styles[optionProps.color + "OptionTitle"]}>
           {optionProps.fantasyName}

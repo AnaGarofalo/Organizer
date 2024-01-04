@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import colors from "../../../assets/theme";
+import colors from "../../assets/theme";
 
 const baseNavBarButton = {
   width: "33%",
@@ -23,9 +23,7 @@ export default styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-evenly",
   },
-  navBarButton: {
-    ...baseNavBarButton,
-  },
+  navBarButton: baseNavBarButton,
   navBarCurrentButton: {
     ...baseNavBarButton,
     backgroundColor: colors.enfasisSoft,

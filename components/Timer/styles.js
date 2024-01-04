@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import colors from "../../../assets/theme";
+import colors from "../../assets/theme";
 
 const baseButton = {
   borderRadius: 5,

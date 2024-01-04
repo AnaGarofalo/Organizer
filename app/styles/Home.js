@@ -1,8 +1,7 @@
 import { StyleSheet } from "react-native";
-import colors from "../../../assets/theme";
+import colors from "../../assets/theme";
 
 const baseContainer = {
-  paddingTop: 30,
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",

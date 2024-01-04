@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import colors from "./theme";
 
 const baseContainer = {
-  paddingTop: 30,
   alignItems: "center",
   justifyContent: "space-between",
   width: "100%",
