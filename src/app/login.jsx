@@ -8,6 +8,7 @@ import Password from "../components/Inputs/Password";
 import styles from "./styles/Login";
 
 import users from "../assets/users";
+import ImagePicker from "../components/ImagePicker/ImagePicker";
 
 export default function Login() {
   const [hasAccount, setHasAccount] = useState(true);
@@ -59,12 +60,17 @@ export default function Login() {
             property="password"
             placeholder="Ingrese su contraseña"
           />
-          <TouchableOpacity onPress={() => setHasAccount(false)}>
-            <Text style={styles.onlyTextButton}>No tengo cuenta</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={submitLogin}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={() => setHasAccount(false)}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>No tengo cuenta</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={submitLogin}>
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
       {!hasAccount && (
@@ -93,12 +99,25 @@ export default function Login() {
             property="seccondPassword"
             placeholder="Repita la contraseña"
           />
-          <TouchableOpacity onPress={() => setHasAccount(true)}>
+          {/*           <TouchableOpacity onPress={() => setHasAccount(true)}>
             <Text style={styles.onlyTextButton}>Tengo cuenta</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={createAccount}>
-            <Text style={styles.buttonText}>Create</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <ImagePicker
+            setCreateAccountData={setCreateAccountData}
+            createAccountData={createAccountData}
+          />
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={() => setHasAccount(true)}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>Tengo cuenta</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={createAccount}>
+              <Text style={styles.buttonText}>Create</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>

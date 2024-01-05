@@ -23,4 +23,10 @@ export default styles = StyleSheet.create({
     fontWeight: "400",
   },
   onlyTextButton: { alignSelf: "center", color: colors.enfasisStrong },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingRight: 30,
+    paddingLeft: 30,
+  },
 });
