@@ -17,7 +17,7 @@ const baseButtonText = {
 export default styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 700,
+    height: "77%",
     justifySelf: "flex-start",
   },
   counter: {
@@ -63,12 +63,12 @@ export default styles = StyleSheet.create({
   },
   timerSwipeView: {
     width: "100%",
-    height: 400,
+    height: "60%",
     justifyContent: "flex-end",
     alignItems: "center",
   },
   smallSwipeView: {
     width: "100%",
-    height: 220,
+    height: "40%",
   },
 });

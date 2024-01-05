@@ -6,6 +6,8 @@ export default styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     padding: 5,
+    height: "13%",
+    alignItems: "center",
   },
   smallContainer: {
     flexDirection: "row",
@@ -25,5 +27,6 @@ export default styles = StyleSheet.create({
   },
   logoutButton: {
     justifyContent: "center",
+    paddingRight: 10,
   },
 });

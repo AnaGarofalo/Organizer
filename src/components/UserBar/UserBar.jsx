@@ -3,8 +3,8 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "./styles";
 import colors from "../../assets/theme";
-import { Entypo as Icon } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { Entypo, Feather } from "@expo/vector-icons";
+import { router, usePathname } from "expo-router";
 
 export default function UserBar() {
   const [userData, setUserData] = useState({
@@ -12,6 +12,7 @@ export default function UserBar() {
     email: "",
     picture: "",
   });
+  const pathname = usePathname();
 
   useEffect(() => {
     async function getUserData() {
@@ -40,18 +41,39 @@ export default function UserBar() {
         ></Image>
         <Text style={styles.userName}>{userData.name || "Holi"}</Text>
       </View>
-      <TouchableOpacity
-        style={styles.logoutButton}
-        onPress={async () => {
-          await AsyncStorage.setItem(
-            "userData",
-            JSON.stringify({ name: "", email: "", picture: "" })
-          );
-          router.push("/");
-        }}
-      >
-        <Icon name="log-out" size={40} color={colors.enfasisStrong} />
-      </TouchableOpacity>
+      <View style={styles.smallContainer}>
+        {pathname == "/home" ? (
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={() => {
+              router.push("/settings");
+            }}
+          >
+            <Feather name="settings" size={40} color={colors.enfasisStrong} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={() => {
+              router.push("/home");
+            }}
+          >
+            <Feather name="home" size={40} color={colors.enfasisStrong} />
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity
+          style={styles.logoutButton}
+          onPress={async () => {
+            await AsyncStorage.setItem(
+              "userData",
+              JSON.stringify({ name: "", email: "", picture: "" })
+            );
+            router.push("/");
+          }}
+        >
+          <Entypo name="log-out" size={40} color={colors.enfasisStrong} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

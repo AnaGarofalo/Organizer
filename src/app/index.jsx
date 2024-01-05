@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import Login from "./login";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 

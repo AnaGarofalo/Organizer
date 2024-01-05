@@ -22,6 +22,7 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-evenly",
+    height: "10%",
   },
   navBarButton: baseNavBarButton,
   navBarCurrentButton: {
