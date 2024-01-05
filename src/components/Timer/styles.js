@@ -4,7 +4,7 @@ import colors from "../../assets/theme";
 const baseButton = {
   borderRadius: 5,
   padding: 10,
-  marginTop: 20,
+  margin: 20,
 };
 
 const baseButtonText = {
@@ -15,6 +15,11 @@ const baseButtonText = {
 };
 
 export default styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: 700,
+    justifySelf: "flex-start",
+  },
   counter: {
     backgroundColor: colors.timerBackground,
     borderRadius: 5,
@@ -55,5 +60,15 @@ export default styles = StyleSheet.create({
   terciaryButtonText: {
     ...baseButtonText,
     color: colors.terciarySoft,
+  },
+  timerSwipeView: {
+    width: "100%",
+    height: 400,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  smallSwipeView: {
+    width: "100%",
+    height: 220,
   },
 });

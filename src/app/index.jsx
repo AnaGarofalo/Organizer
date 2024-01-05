@@ -16,7 +16,6 @@ export default function Index() {
 
   useEffect(() => {
     getUserData();
-    return () => {};
   }, []);
 
   return (

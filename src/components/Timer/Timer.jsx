@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { View, Text, TouchableHighlight } from "react-native";
 import styles from "./styles";
+import SwipeView from "../SwipeView/SwipeView";
 
-export default function Timer({ baseTime, color }) {
+export default function Timer({ baseTime, color, swipeOptions, title }) {
   const [isWorking, setIsWorking] = useState(false);
   const [currentTime, setCurrentTime] = useState(baseTime);
 
@@ -35,16 +36,27 @@ export default function Timer({ baseTime, color }) {
   }, [isWorking]);
 
   return (
-    <View>
-      <View style={styles.counter}>
-        <Text style={styles.counterText}>
-          {Math.floor(currentTime / 60) +
-            ":" +
-            (String(currentTime % 60).length == 1
-              ? "0" + (currentTime % 60)
-              : currentTime % 60)}
-        </Text>
-      </View>
+    <View style={styles.container}>
+      <SwipeView
+        child={
+          <View>
+            {title}
+            <View style={styles.counter}>
+              <Text style={styles.counterText}>
+                {Math.floor(currentTime / 60) +
+                  ":" +
+                  (String(currentTime % 60).length == 1
+                    ? "0" + (currentTime % 60)
+                    : currentTime % 60)}
+              </Text>
+            </View>
+          </View>
+        }
+        optionName={swipeOptions.optionName}
+        parameters={swipeOptions.parameters}
+        style={styles.timerSwipeView}
+      ></SwipeView>
+
       <TouchableHighlight
         style={styles[color + "Button"]}
         onPress={() => {
@@ -59,6 +71,11 @@ export default function Timer({ baseTime, color }) {
           {isWorking ? "STOP" : "START"}
         </Text>
       </TouchableHighlight>
+      <SwipeView
+        optionName={swipeOptions.optionName}
+        parameters={swipeOptions.parameters}
+        style={styles.smallSwipeView}
+      ></SwipeView>
     </View>
   );
 }

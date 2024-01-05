@@ -3,9 +3,9 @@ import colors from "../../assets/theme";
 
 const baseContainer = {
   alignItems: "center",
-  justifyContent: "space-between",
   width: "100%",
   height: "100%",
+  justifyContent: "space-evenly",
 };
 
 const baseOptionTitle = {
