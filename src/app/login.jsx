@@ -6,6 +6,7 @@ import { router } from "expo-router";
 import NormalInput from "../components/Inputs/NormalInput";
 import Password from "../components/Inputs/Password";
 import styles from "./styles/Login";
+import timeOptions from "../assets/vars";
 
 import users from "../assets/users";
 import ImagePicker from "../components/ImagePicker/ImagePicker";
@@ -40,6 +41,7 @@ export default function Login() {
     if (!email || !password) return Alert.alert("Faltan datos");
     if (password !== seccondPassword)
       return Alert.alert("Las contraseñas deben ser iguales");
+    createAccountData.preferences = timeOptions;
     users.push(createAccountData);
     setHasAccount(true);
   }

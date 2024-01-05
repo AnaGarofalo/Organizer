@@ -3,10 +3,7 @@ import { TouchableOpacity } from "react-native";
 
 export default ChangeColorButton = ({
   colors,
-  preferences,
-  setPreferences,
-  userData,
-  setUserData,
+  changePreference,
   index,
   colorName,
 }) => {
@@ -17,21 +14,10 @@ export default ChangeColorButton = ({
         height: "33%",
       }}
       onPress={async () => {
-        const newPreferences = preferences.map((pref, i) => {
-          if (i != index) return pref;
-          else return { ...pref, color: colorName };
-        });
-        setPreferences(newPreferences);
-        AsyncStorage.setItem(
-          "userData",
-          JSON.stringify({
-            ...userData,
-            preferences: newPreferences,
-          })
-        );
-        setUserData({
-          ...userData,
-          preferences: newPreferences,
+        await changePreference({
+          prefName: "color",
+          prefValue: colorName,
+          index,
         });
       }}
     ></TouchableOpacity>

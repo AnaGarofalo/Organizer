@@ -3,33 +3,48 @@ import styles from "./styles/Settings";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UserBar from "../components/UserBar/UserBar";
-import timeOptions from "../assets/vars";
 import { router } from "expo-router";
+import { Feather as Icons } from "@expo/vector-icons";
 import colors from "../assets/theme";
 import ChangeColorButton from "../components/ChangeColorButton/ChangeColorButton";
 
 export default Settings = () => {
   const [preferences, setPreferences] = useState([]);
   const [userData, setUserData] = useState({});
+
   const getPreferences = async () => {
     try {
       const data = JSON.parse(await AsyncStorage.getItem("userData"));
-      if (!data.preferences) {
-        setPreferences(timeOptions);
-        await AsyncStorage.setItem(
-          "userData",
-          JSON.stringify({ ...data, preferences: timeOptions })
-        );
-      } else setPreferences(data.preferences);
+      setPreferences(data.preferences);
       setUserData(data);
     } catch (error) {
-      Alert.alert("Hubo un error al cargar las preferencias");
-      router.replace("/home");
       console.log("Error al cargar settings", error.message);
+      Alert.alert("Hubo un error al cargar las preferencias");
+      router.push("/home");
     }
   };
+
+  const changePreference = async ({ prefName, prefValue, index }) => {
+    const newPreferences = preferences.map((pref, i) => {
+      if (i != index) return pref;
+      else return { ...pref, [prefName]: prefValue };
+    });
+    setPreferences(newPreferences);
+    setUserData({
+      ...userData,
+      preferences: newPreferences,
+    });
+    await AsyncStorage.setItem(
+      "userData",
+      JSON.stringify({
+        ...userData,
+        preferences: newPreferences,
+      })
+    );
+  };
+
   useEffect(() => {
-    getPreferences();
+    if (!Object.keys(userData).length) getPreferences();
   }, []);
   return (
     <View style={styles.baseContainer}>
@@ -39,43 +54,66 @@ export default Settings = () => {
           <View style={styles[color + "Container"]}>
             <View style={styles["titleContainer"]}>
               <Text style={styles[color + "Title"]}>{fantasyName}</Text>
-
               <View style={styles.timeContainer}>
                 <Text style={styles.time}>
-                  {" "}
                   {Math.floor(time / 60) +
                     ":" +
                     (String(time % 60).length == 1
                       ? "0" + (time % 60)
                       : time % 60)}
                 </Text>
+                <View style={styles.changeTimeButtonsContainer}>
+                  <TouchableOpacity
+                    style={styles.changeTimeButton}
+                    onPress={async () => {
+                      await changePreference({
+                        prefName: "time",
+                        prefValue: time + 60,
+                        index,
+                      });
+                    }}
+                  >
+                    <Icons
+                      name="plus"
+                      size={20}
+                      color={colors.enfasisSoft}
+                    ></Icons>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.changeTimeButton}
+                    onPress={async () => {
+                      await changePreference({
+                        prefName: "time",
+                        prefValue: time - 60,
+                        index,
+                      });
+                    }}
+                  >
+                    <Icons
+                      name="minus"
+                      size={20}
+                      color={colors.enfasisSoft}
+                    ></Icons>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
             <View style={styles.colorsContainer}>
               <ChangeColorButton
+                changePreference={changePreference}
                 colors={colors}
-                preferences={preferences}
-                setPreferences={setPreferences}
-                userData={userData}
-                setUserData={setUserData}
                 index={index}
                 colorName="primary"
               />
               <ChangeColorButton
                 colors={colors}
-                preferences={preferences}
-                setPreferences={setPreferences}
-                userData={userData}
-                setUserData={setUserData}
+                changePreference={changePreference}
                 index={index}
                 colorName="secondary"
               />
               <ChangeColorButton
                 colors={colors}
-                preferences={preferences}
-                setPreferences={setPreferences}
-                userData={userData}
-                setUserData={setUserData}
+                changePreference={changePreference}
                 index={index}
                 colorName="terciary"
               />
