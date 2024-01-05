@@ -90,12 +90,7 @@ export default stlyes = StyleSheet.create({
     width: "15%",
     backgroundColor: colors.enfasisStrong,
   },
-  changeTimeButton: {
-    padding: 5,
-    height: "50%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+
   titleContainer: {
     width: "80%",
     justifyContent: "space-around",

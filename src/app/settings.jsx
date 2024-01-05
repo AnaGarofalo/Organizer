@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UserBar from "../components/UserBar/UserBar";
 import { router } from "expo-router";
-import { Feather as Icons } from "@expo/vector-icons";
+
 import colors from "../assets/theme";
 import ChangeColorButton from "../components/ChangeColorButton/ChangeColorButton";
+import ChangeTimeButton from "../components/ChangeTimeButton/ChangeTimeButton";
 
 export default Settings = () => {
   const [preferences, setPreferences] = useState([]);
@@ -63,38 +64,18 @@ export default Settings = () => {
                       : time % 60)}
                 </Text>
                 <View style={styles.changeTimeButtonsContainer}>
-                  <TouchableOpacity
-                    style={styles.changeTimeButton}
-                    onPress={async () => {
-                      await changePreference({
-                        prefName: "time",
-                        prefValue: time + 60,
-                        index,
-                      });
-                    }}
-                  >
-                    <Icons
-                      name="plus"
-                      size={20}
-                      color={colors.enfasisSoft}
-                    ></Icons>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.changeTimeButton}
-                    onPress={async () => {
-                      await changePreference({
-                        prefName: "time",
-                        prefValue: time - 60,
-                        index,
-                      });
-                    }}
-                  >
-                    <Icons
-                      name="minus"
-                      size={20}
-                      color={colors.enfasisSoft}
-                    ></Icons>
-                  </TouchableOpacity>
+                  <ChangeTimeButton
+                    time={time}
+                    index={index}
+                    changePreference={changePreference}
+                    sum={true}
+                  />
+                  <ChangeTimeButton
+                    time={time}
+                    index={index}
+                    changePreference={changePreference}
+                    sum={false}
+                  />
                 </View>
               </View>
             </View>
