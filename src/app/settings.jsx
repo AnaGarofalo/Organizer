@@ -65,12 +65,14 @@ export default Settings = () => {
                 </Text>
                 <View style={styles.changeTimeButtonsContainer}>
                   <ChangeTimeButton
+                    key="plus"
                     time={time}
                     index={index}
                     changePreference={changePreference}
                     sum={true}
                   />
                   <ChangeTimeButton
+                    key="minus"
                     time={time}
                     index={index}
                     changePreference={changePreference}
